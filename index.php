@@ -161,23 +161,26 @@
 		}
 	}//lumRange
 
-	function sglt($lum, $temp){
+	function sglt($lum, $temp, &$color){
 		if ($lum < 2 ){
 			if ($temp >= 7000){
+				$color = "#00FFFF";
 				return "is more than likley a Wite Dwarf! <br>";
 			}else{
-				"is likley a Main Sequence Star. <br>";
+				return "is likley a Main Sequence Star. <br>";
 			}
 		}else if ($lum < 4){
 			if ($temp > 7250){
 				return "is probably a Main Sequence Star. <br>";
 			}else{
+				$color = "#FF8C00";
 				return "is possibly a Giant! <br>";
 			}
 		}else{
 			if ($temp > 15000){
 				return "is possibly a Main Sequence or Super Giant Star! <br>";
 			}else{
+				$color = "#FF0000";
 				return "is deffinetley a Super Giant! <br>";
 			}
 		}
@@ -201,9 +204,9 @@
 		}
 	}
 
-	function sgls($lum, $spectra){
+	function sgls($lum, $spectra, &$color){
 		$num = specTemp($spectra);
-		return sglt($lum, $num);
+		return sglt($lum, $num, $color);
 	}
 
 	// function sglt($mag, $temp){
@@ -238,6 +241,8 @@
 	}
 
 	if ($calc == true and $button != NULL){
+
+		$color = "#FFFF0A";
 
 		$finalLum = " ";
 		$finalMag = " ";
@@ -276,8 +281,8 @@
 
 		//calculate star group
 		$msg = $msg."<h2>Star Info Results:</h2>";
-		$msg = $msg."Luminosity: ".$finalLum."<br>";
-		$msg = $msg."Absolute Magnitude: ".$finalMag."<br>";
+		$msg = $msg."Luminosity: 10^ ".$finalLum." based off the Sun <br>";
+		$msg = $msg."Absolute Magnitude: ".$finalMag." MV<br>";
 		$msg = $msg."Temperature: ".$finalTemp."<br>";
 		$msg = $msg."Spectra Type: ".$finalSpectra."<br>";
 
@@ -285,10 +290,10 @@
 			$msg = $msg."<br>Enough info was given to estimate the Star Group your star belongs too!<br>I estimate your star ";
 			if($lum != NUll){
 				if ($temp != NULL){
-					$new = sglt($lum, $temp);
+					$new = sglt($lum, $temp, $color);
 					$msg = $msg.$new;
 				}else{
-					$new = sgls($lum, $spectra);
+					$new = sgls($lum, $spectra, $color);
 					$msg = $msg.$new;
 				}
 			}else{
@@ -321,7 +326,7 @@
 	<div class="container">
 
 	<div class="left-element">
-		<font color="#00FFFF">
+		<font color=<?php echo $color;?>>
 		<?php  echo $msg."<br>";   ?>
 		</font>
 	</div>
@@ -333,10 +338,10 @@
 	<div class="right-element">
 	<font color="#FFFFFF">
 
-	<h1>Star Info Calculator:</h1>
+	<h1>Star Info Calculator/ <br>Guessing Game:</h1>
 
 	<form method="POST">
-		Luminosity: -4 <input type="number" name="lum" value="" min=-4 max=5> 5<br><br>
+		Luminosity: -4 <input type="range" name="lum" value="" min=-4 max=5> 5<br><br>
 
 		Absolute Magnitude: <input type="number" name="mag" value="" min=-10 max=14><br><br>
 
@@ -360,8 +365,13 @@
 	<!-- //right -->
 	
 
+	<div >
+		<embed type="image/jpg" src="hrd.jpg">
+	</div>
+
 	</div>
 	<!-- /container -->
+
 	</div>
 	</div>
 	</div>
