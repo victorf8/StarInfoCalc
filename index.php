@@ -33,7 +33,7 @@
 				return true;
 			}else{ return false; }
 		}else if ($lum == 4){
-			if (-9 < $mag and $mag < -6){
+			if (-10 < $mag and $mag < -7s){
 				return true;
 			}else{ return false; }
 		}else if ($lum == 5){
