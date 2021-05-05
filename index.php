@@ -37,7 +37,7 @@
 				return true;
 			}else{ return false; }
 		}else if ($lum == 5){
-			if (-7 < $mag and $mag < -13){
+			if (-12 < $mag and $mag < -7){
 				return true;
 			}else{ return false; }
 		}
@@ -225,24 +225,26 @@
 
 	$msg = " ";
 	$calc = true;
+	$color = "#FFFF0A";
 	
 	if ($lum == NULL and $mag == NULL and $temp == NULL and $spectra == NULL and $button != NULL){//if no attributes were added
-		$msg = "You must enter atleast one datafield to make a calculation. <br>";
+		$msg = $msg."You must enter atleast one datafield to make a calculation.<br>";
+		$calc = false;
 	}else if($lum != NULL and $mag != NULL){//if luminosity and magnitude enteredd check they make sence
 		if (yCheck($lum, $mag) == false){
-			$msg = "Your Luminosity and Absolute Magnitude don't really match up. <br> Would you try again? <br>";
+			$msg = $msg."Your Luminosity and Absolute Magnitude don't really match up. <br> Would you try again? <br>";
 			$calc = false;
 		}
 	}else if ($temp != NULL and $spectra != NULL){
 		if (xCheck($temp, $spectra) == false){
-			$msg = "Your Temperature and Spectra Type don't really match up. <br> Would you try again? <br>";
+			$msg = $msg."Your Temperature and Spectra Type don't really match up. <br> Would you try again? <br>";
 			$calc = false;
 		}
 	}
 
 	if ($calc == true and $button != NULL){
 
-		$color = "#FFFF0A";
+		
 
 		$finalLum = " ";
 		$finalMag = " ";
@@ -286,6 +288,8 @@
 		$msg = $msg."Temperature: ".$finalTemp."<br>";
 		$msg = $msg."Spectra Type: ".$finalSpectra."<br>";
 
+		$bool = ($lum != NULL or $mag != NULL);
+		$msg = $msg."Lum & Mag: ".$bool."<br>";
 		if (($lum != NULL or $mag != NULL) and ($temp != NULL or $spectra != NULL)){
 			$msg = $msg."<br>Enough info was given to estimate the Star Group your star belongs too!<br>I estimate your star ";
 			if($lum != NUll){
@@ -341,7 +345,7 @@
 	<h1>Star Info Calculator/ <br>Guessing Game:</h1>
 
 	<form method="POST">
-		Luminosity: -4 <input type="range" name="lum" value="" min=-4 max=5> 5<br><br>
+		Luminosity: -4 <input type="number" name="lum" value="" min=-4 max=5> 5<br><br>
 
 		Absolute Magnitude: <input type="number" name="mag" value="" min=-10 max=14><br><br>
 
@@ -374,9 +378,9 @@
 
 	</div>
 	</div>
-	</div>
+	</div> -->
 	<!-- //clouds
 	//twinkiling
-	//stars -->
+	//stars
 
 </html>
