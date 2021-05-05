@@ -289,7 +289,6 @@
 		$msg = $msg."Spectra Type: ".$finalSpectra."<br>";
 
 		$bool = ($lum != NULL or $mag != NULL);
-		$msg = $msg."Lum & Mag: ".$bool."<br>";
 		if (($lum != NULL or $mag != NULL) and ($temp != NULL or $spectra != NULL)){
 			$msg = $msg."<br>Enough info was given to estimate the Star Group your star belongs too!<br>I estimate your star ";
 			if($lum != NUll){
