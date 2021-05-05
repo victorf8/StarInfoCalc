@@ -345,7 +345,7 @@
 	<h1>Star Info Calculator/ <br>Guessing Game:</h1>
 
 	<form method="POST">
-		Luminosity: 10 ^ (4 <input type="range" name="lum" value="" min=-4 max=5> 5)<br><br>
+		Luminosity: 10 ^ (-4 <input type="range" name="lum" value="" min=-4 max=5> 5)<br><br>
 
 		Absolute Magnitude: <input type="number" name="mag" value="" min=-10 max=14><br><br>
 
